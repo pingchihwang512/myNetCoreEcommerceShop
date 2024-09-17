@@ -1,9 +1,8 @@
-namespace MyEcommerceShop.Models
+﻿namespace MyNetECommerceShop.Models
 {
     public class ErrorViewModel
     {
         public string? RequestId { get; set; }
-
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
     }
 }

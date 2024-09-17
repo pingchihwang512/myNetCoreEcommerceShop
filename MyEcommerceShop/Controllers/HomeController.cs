@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using MyEcommerceShop.Models;
 using System.Diagnostics;
+using MyNetECommerceShop.Models;
 
-namespace MyEcommerceShop.Controllers
+namespace MyNetECommerceShopWeb.Controllers
 {
     public class HomeController : Controller
     {

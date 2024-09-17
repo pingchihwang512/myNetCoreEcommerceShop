@@ -1,0 +1,71 @@
+﻿@model List<Category>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Category List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Display Order</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model.OrderBy(u => u.DisplayOrder))
+            {
+                <tr>
+                    <td>@obj.Name</td>
+                    <td>@obj.DisplayOrder</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.CategoryId" class="btn btn-primary mx-2">
+                                <i class="bi bi-pencil-square"></i> Edit
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.CategoryId" class="btn btn-danger mx-2">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*
+@if (TempData["success"] != null)
+{
+    <div id="successAlert" class="alert alert-success alert-dismissible fade text-center position-fixed start-50 translate-middle-x w-50" role="alert" style="top: 10%;">
+        <strong>@TempData["success"]</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- JavaScript for Alert fade in/out -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var alert = document.getElementById('successAlert');
+
+        if (alert) {
+            // 添加 .show 类以启用淡入效果
+            alert.classList.add('show');
+
+            // 5 秒后淡出
+            setTimeout(function () {
+                alert.classList.remove('show'); // 移除 .show 类，启用淡出
+                alert.classList.add('fade'); // 确保 alert 完全消失
+            }, 5000);
+        }
+    });
+</script>
+*@
