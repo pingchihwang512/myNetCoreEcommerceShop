@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MyNet8EcommerceShop\MyNetECommerceShop.DataAccess\MyNetECommerceShop.DataAccess.csproj" />
+    <ProjectReference Include="..\MyNetECommerceShop.DataAccess\MyNetECommerceShop.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

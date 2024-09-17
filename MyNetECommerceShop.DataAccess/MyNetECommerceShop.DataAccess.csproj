@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MyNetECommerceShop.Models\MyNetECommerceShop.Models.csproj" />
-    <ProjectReference Include="..\..\MyNetECommerceShop.Utility\MyNetECommerceShop.Utility.csproj" />
+    <ProjectReference Include="..\MyNetECommerceShop.Models\MyNetECommerceShop.Models.csproj" />
+    <ProjectReference Include="..\MyNetECommerceShop.Utility\MyNetECommerceShop.Utility.csproj" />
   </ItemGroup>
 
 </Project>
