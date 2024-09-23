@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyNetECommerceShop.Models;
 
@@ -10,9 +11,11 @@ using MyNetECommerceShop.Models;
 namespace MyNetECommerceShop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240923223642_addProductsToDbUpdate")]
+    partial class addProductsToDbUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,55 +49,19 @@ namespace MyNetECommerceShop.DataAccess.Migrations
                         {
                             CategoryId = 1,
                             DisplayOrder = 1,
-                            Name = "Clothing & Accessories"
+                            Name = "Action"
                         },
                         new
                         {
                             CategoryId = 2,
                             DisplayOrder = 2,
-                            Name = "Home & Furniture"
+                            Name = "SciFi"
                         },
                         new
                         {
                             CategoryId = 3,
                             DisplayOrder = 3,
-                            Name = "Electronics"
-                        },
-                        new
-                        {
-                            CategoryId = 4,
-                            DisplayOrder = 4,
-                            Name = "Books & Media"
-                        },
-                        new
-                        {
-                            CategoryId = 5,
-                            DisplayOrder = 5,
-                            Name = "Toys & Games"
-                        },
-                        new
-                        {
-                            CategoryId = 6,
-                            DisplayOrder = 6,
-                            Name = "Sports & Outdoors"
-                        },
-                        new
-                        {
-                            CategoryId = 7,
-                            DisplayOrder = 7,
-                            Name = "Beauty & Personal Care"
-                        },
-                        new
-                        {
-                            CategoryId = 8,
-                            DisplayOrder = 8,
-                            Name = "Collectibles & Antiques"
-                        },
-                        new
-                        {
-                            CategoryId = 9,
-                            DisplayOrder = 9,
-                            Name = "Others"
+                            Name = "History"
                         });
                 });
 
