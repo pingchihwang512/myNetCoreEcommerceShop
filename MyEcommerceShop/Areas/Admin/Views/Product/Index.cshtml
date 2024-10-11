@@ -1,0 +1,59 @@
+﻿@model List<Product>
+
+<div class="container">
+    <div class="row pt-4 pb-3">
+        <div class="col-6">
+            <h2 class="text-primary">Product List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Product
+            </a>
+        </div>
+    </div>
+
+    <table id="tblData" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ImageURL</th>
+                <th>Product Name</th>
+                <th>List Price</th>
+                <th>Description</th>
+                <th>Category</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts{
+    <script src="~/js/product.js"></script>
+}
+
+@*
+@if (TempData["success"] != null)
+{
+    <div id="successAlert" class="alert alert-success alert-dismissible fade text-center position-fixed start-50 translate-middle-x w-50" role="alert" style="top: 10%;">
+        <strong>@TempData["success"]</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<!-- JavaScript for Alert fade in/out -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var alert = document.getElementById('successAlert');
+
+        if (alert) {
+            // 添加 .show 类以启用淡入效果
+            alert.classList.add('show');
+
+            // 5 秒后淡出
+            setTimeout(function () {
+                alert.classList.remove('show'); // 移除 .show 类，启用淡出
+                alert.classList.add('fade'); // 确保 alert 完全消失
+            }, 5000);
+        }
+    });
+</script>
+*@

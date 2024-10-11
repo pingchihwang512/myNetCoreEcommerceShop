@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MyNetECommerceShop.DataAccess.Repository.IRepository;
 using MyNetECommerceShop.Models;
+using MyNetECommerceShop.Utility;
 
 namespace MyNetEcommerceShopWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -22,7 +25,6 @@ namespace MyNetEcommerceShopWeb.Areas.Admin.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Category obj)
         {
@@ -53,10 +55,10 @@ namespace MyNetEcommerceShopWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.CategoryId == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Below is other ways to search:
-            //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.CategoryId==id);
-            //Category? categoryFromDb2 = _db.Categories.Where(u => u.CategoryId == id).FirstOrDefault();
+            //Category? categoryFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
+            //Category? categoryFromDb2 = _db.Categories.Where(u => u.Id == id).FirstOrDefault();
 
             if (categoryFromDb == null)
             {
@@ -84,7 +86,7 @@ namespace MyNetEcommerceShopWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.CategoryId == id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
 
             if (categoryFromDb == null)
             {
@@ -96,7 +98,7 @@ namespace MyNetEcommerceShopWeb.Areas.Admin.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? id)
         {
-            Category? obj = _unitOfWork.Category.Get(u => u.CategoryId == id);
+            Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();

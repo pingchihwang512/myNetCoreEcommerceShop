@@ -19,7 +19,19 @@ namespace MyNetECommerceShop.DataAccess.Repository
 
         public void Update(Product obj)
         {
-            _db.Products.Update(obj);
+            var objFromDb = _db.Products.FirstOrDefault(u => u.ProductId == obj.ProductId);
+            if(objFromDb!=null)
+            {
+                objFromDb.ProductName = obj.ProductName;
+                objFromDb.Description = obj.Description;
+                objFromDb.ListPrice = obj.ListPrice;
+                objFromDb.CategoryId = obj.CategoryId;
+                if(obj.ImageURL != null)
+                {
+                    objFromDb.ImageURL = obj.ImageURL;
+                }
+
+            }
         }
     }
 }

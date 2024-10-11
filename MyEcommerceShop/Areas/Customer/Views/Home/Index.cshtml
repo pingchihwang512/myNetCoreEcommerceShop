@@ -1,8 +1,173 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Product>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<style>
+    /* Make the body and html occupy the full viewport height */
+    body, html {
+        height: auto; /* Allow the height to adjust */
+        margin: 0;
+    }
+
+    .navbar{
+        margin-bottom:0 !important;
+    }
+
+    .container {
+        position: relative;
+        max-width: 100%;
+        overflow: hidden; /* Hide overflow from the video */
+        padding:0;
+    }
+
+    /* Video background styling */
+    #video-background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 85vh; /* Set height to 85vh */
+        width: auto;
+        height: auto;
+        transform: translate(-50%, -50%);
+        z-index: -1; /* Behind the overlay and content */
+        filter: brightness(0.6); /* Optional: adjust brightness */
+    }
+
+    /* Overlay styling */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 85vh; /* Match overlay height to video */
+        background: rgba(0, 0, 0, 0.2); /* Semi-transparent black */
+        z-index: 1; /* Position above the video */
+    }
+
+    /* Content styling */
+    .content {
+        position: relative;
+        z-index: 2; /* Position above the overlay */
+        color: white;
+        text-align: center;
+        min-height: 85vh; /* Minimum height to allow scrolling */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center content vertically */
+        align-items: center; /* Center content horizontally */
+    }
+
+        .content h1 {
+            color: white;
+        }
+
+    /* Style for the video element */
+    video {
+        display: block; /* Ensures video behaves as a block element */
+    }
+
+    /* swiper-slide 容器樣式 */
+    swiper-slide {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+        swiper-slide img {
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+
+    /* 當滑鼠懸停時圖片放大並變暗 */
+    swiper-slide:hover img {
+        transform: scale(1.15); /* 圖片放大 */
+        filter: brightness(0.55); /* 圖片變暗 */
+    }
+
+    /* 產品名稱樣式（隱藏） */
+    swiper-slide p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.5em;
+        color: white;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+    }
+
+    /* 滑鼠懸停時顯示產品名稱 */
+    swiper-slide:hover p {
+        opacity: 1;
+    }
+
+    swiper-container::part(button-prev) {
+        color:white;
+    }
+
+    swiper-container::part(button-next) {
+        color: white;
+    }
+
+    swiper-container::part(bullet-active) {
+        background: white;
+    }
+</style>
+
+<div class="container">
+    <video id="video-background" autoplay muted loop>
+        <source src="~/video/bannerVideo.mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="overlay"></div> <!-- Overlay Layer -->
+    <div class="content">
+        <h1>Welcome to My Website</h1>
+        <p>- Find the cheap and quality goods here -</p>
+    </div>
 </div>
+
+<div class="mt-3">
+    <swiper-container init="false" navigation="true" pagination="true">
+        @foreach (var product in Model)
+        {
+            <swiper-slide>
+                <a asp-action="Details" asp-route-productId="@product.ProductId">
+                    <img src="@product.ImageURL" alt="Product Image">
+                    <p>@product.ProductName</p>
+                </a>
+            </swiper-slide>
+        }
+    </swiper-container>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+
+<script>
+    // swiper element
+    const swiperEl = document.querySelector('swiper-container');
+
+    // swiper parameters
+    const swiperParams = {
+        slidesPerView: 1,
+    breakpoints: {
+        640: {
+        slidesPerView: 2,
+        },
+    1024: {
+        slidesPerView: 3,
+        },
+    },
+    on: {
+        init() {
+        // ...
+    },
+    },
+    };
+
+    // now we need to assign all parameters to Swiper element
+    Object.assign(swiperEl, swiperParams);
+
+    // and now initialize it
+    swiperEl.initialize();
+</script>
+
